@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- 使用bootstrap的时候的模板 -->
+		<!-- 1、创建视口 主要作用是移动设备优先，并且规定了缩放比例为1:1-->
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<!-- 2、引入jquery文件 bootstrap依赖于jquery-->
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js" ></script>
+		<!-- 3、引入bootstrap css文件 -->
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<!-- 4、引入bootstrap js文件 -->
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 20%;
+				height: 40px;
+				background-color: red;
+			}
+			
+			#div2{
+				width: 30%;
+				height: 60px;
+				background-color: green;
+			}
+			
+			#div3{
+				width: 40%;
+				height: 35px;
+				background-color: blue;
+			}
+			#div4{
+				width: 80%;
+				height: 70px;
+				background-color: salmon;	
+			}
+			/*#clear{
+				clear: both;
+			}*/
+		</style>
+	</head>
+	<body>
+		<!-- 
+			使用bootstrap的样式来float:left，以及clear:both
+		-->
+		<!-- 创建布局容器方式2 -->
+		<div class="container-fluid">
+			<!-- 相当与float:left -->
+			<div id="div1" class="pull-left">这是第一个div</div>
+			<div id="div2" class="pull-left">这是第二个div</div>
+			<div id="div3" class="pull-left">这是第三个div</div>
+			<!-- 相当与clear:both
+			-->
+			<div id="clear" class="clearfix"></div>
+			<div id="div4">这是第四个div</div>
+		</div>
+	</body>
+</html>

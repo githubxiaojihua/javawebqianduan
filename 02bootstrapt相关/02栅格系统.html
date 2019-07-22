@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- 创建视口 -->
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<!-- 引入jquery文件 -->
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js" ></script>
+		<!-- 引入bootstrap css文件 -->
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<!-- 引入bootstrap js文件 -->
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<!-- 
+			bootstrap栅格系统，通过不同的类名对不同的设备的屏幕宽度进行设置。
+			栅格系统将屏幕的一行设置为12等分，超过12等分则自动换行。
+			屏幕分类：
+			分辨率>1200px          大屏幕
+			1200px>分辨率>992px    中等屏幕
+			992px>分辨率>768px     小屏幕
+			768px>分辨率           	    超小屏幕
+			bootstrap通过col-lg-n来设置大屏幕的份数设置
+						col-md-n来设置中等屏幕的份数设置
+						col-sm-n来设置小屏幕的份数设置
+						col-xs-n来设置超小屏幕的份数设置
+						
+			如下的例子中：
+			设置了12个div默认都是每行一个，高度10px
+			通过设置栅格系统，设置为：当大屏幕的时候一行12个div，当中等屏幕一行4个，当小屏幕一行3个，当超小屏幕一行2个.
+			一行分为12等份是固定的，那么如果要在一行中显示4个，那么每个div应该占据3个栅格也就是col-xx-3
+		-->
+		<div class="container-fluid">
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+			<div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" style="height:10px;border:1px solid red;"></div>
+		</div>
+		
+	</body>
+</html>

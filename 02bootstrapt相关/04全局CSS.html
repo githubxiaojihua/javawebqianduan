@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- 使用bootstrap的时候的模板 -->
+		<!-- 1、创建视口 主要作用是移动设备优先，并且规定了缩放比例为1:1-->
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<!-- 2、引入jquery文件 bootstrap依赖于jquery-->
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js" ></script>
+		<!-- 3、引入bootstrap css文件 -->
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<!-- 4、引入bootstrap js文件 -->
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<!-- 
+			全局CSS是bootstrap中定义的class，所有的HTML标签都可以应用这些class，这些class将HTML标签
+			进行了增强
+		-->	
+		<!-- 创建布局容器方式2 -->
+		<div class="container-fluid">
+			<h1>加油肖吉华</h1>你是最棒的！！！
+		</div>
+		<hr/>
+		<!-- class为h3的全局class，其他的还有h1-h7等等，这些都是属于bootstrap文档中的排版部分 -->
+		<span class="h3">加油肖吉华</span>你是最棒的！！！
+		<hr/>
+		<!-- 对其全局class -->
+		<p class="text-center">加油肖吉华！！！</p>
+		<!-- 通过普通CSS实现 -->
+		<p style="text-align: center;"> 加油肖吉华！！！</p>
+		<hr />
+		<!-- 大小写转换 -->
+		<p class="text-uppercase">come on 1!!</p>
+		<hr />
+		<!-- 按钮样式   超链接按钮样式 -->
+		<button class="btn btn-default">bootstrap按钮</button>
+		<button class="btn btn-primary">bootstrap按钮</button>
+		<a href="#" class="btn btn-danger">我是超链接</a>
+		<button class="btn btn-danger" disabled="disabled">禁用按钮</button>
+	</body>
+</html>

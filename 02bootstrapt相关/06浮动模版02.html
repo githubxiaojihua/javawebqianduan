@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- 使用bootstrap的时候的模板 -->
+		<!-- 1、创建视口 主要作用是移动设备优先，并且规定了缩放比例为1:1-->
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<!-- 2、引入jquery文件 bootstrap依赖于jquery-->
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js" ></script>
+		<!-- 3、引入bootstrap css文件 -->
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<!-- 4、引入bootstrap js文件 -->
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 20%;
+				height: 40px;
+				background-color: red;
+				float: left;
+			}
+			
+			#div2{
+				width: 30%;
+				height: 60px;
+				background-color: green;
+				float: left;
+			}
+			
+			#div3{
+				width: 40%;
+				height: 35px;
+				background-color: blue;
+				float: left;
+			}
+			#div4{
+				width: 80%;
+				height: 70px;
+				background-color: salmon;	
+			}
+			#clear{
+				clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 清理浮动，前三个div都是向左浮动的，第四个没有设置向左浮动，那么会导致其被前三个div覆盖
+			解决办法是通过原生css进行浮动清理：
+			clear:both;
+		-->
+		<!-- 创建布局容器方式2 -->
+		<div class="container-fluid">
+			<div id="div1">这是第一个div</div>
+			<div id="div2">这是第二个div</div>
+			<div id="div3">这是第三个div</div>
+			<div id="clear"></div>
+			<div id="div4">这是第四个div</div>
+		</div>
+	</body>
+</html>
