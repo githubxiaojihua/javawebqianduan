@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/*
+		 * 1、数组的splice方法
+		 * 第一个参数是起始位置。
+		 * 第二个参数是截取的个数
+		 * 第三个参数是替换成的新的元素
+		 */
+		var arr = [1,2,3,4,5];
+		arr.splice(1,2,3,4,5);
+		//alert("splice():" + arr);
+		
+		/**
+		 * 1、数组的slice方法左开右闭的截取
+		 * 不操作数组本身，返回一个新的数组
+		 */
+		var resultArr = arr.slice(2,4);
+		//alert("slice():" + resultArr);
+		
+		//数组的合并方法concat，返回一个新的数组
+		var arr2= [0,0,0,0];
+		resultArr = arr.concat(arr2);
+		//alert("concat()" + resultArr);
+		
+		//在每个元素之间增加内容，返回新的数组
+		resultArr = arr.join("--");
+		//alert("join()" + resultArr);
+		
+		//数组的排序和反排序，操作的都是数组本身
+		//alert("sort():" + arr.sort());
+		//alert("reverse()" + arr.reverse());
+		
+		//sort接收自定义函数来排序
+		//alert("自定义排序函数：" + arr.sort(compare));
+		function compare(value1, value2){
+			if(value1<value2){
+				return 1;
+			}else if(value1>value2){
+				return -1;
+			}else{
+				return 0;
+			}
+		}
+		
+		//ECMAscript5新特性
+		/*
+		 * indexOf一个参数的时候从0开始查找相等的元素，两个参数的时候从第一个参数指定的位置开始搜索相等的元素
+		 * 比较的时候使用的是===
+		 */
+		var myArray = [1,2,3,4,5,4,3,2,1];
+		var index = myArray.indexOf(4);
+		//alert("indexOf(一个参数)" + index);
+		index = myArray.indexOf(4,4);
+		//alert("indexOf(两个参数)" + index);
+		
+		/*
+		 * 针对每一个元素调用function如果每一个元素都返回true
+		 * 那么返回ture,否则返回false
+		 */
+		var result = myArray.every(function(item,index,array){
+			return item>0;
+		});
+		//alert("every函数：" + result);
+		
+		/*
+		 * 对每一个元素进行function函数的过滤如果，返回所有返回true的元素数组
+		 */
+		result = myArray.filter(function(item,index,array){
+			return item >2;
+		});
+		//alert("filter函数：" + result);
+		
+		//对每一个数组元素调用function
+		myArray.forEach(function(item,index,array){
+			//alert(item);
+		});
+		
+		var nums = myArray.push(2,true,'122',"1222");
+		//alert("push往数组尾部追加元素，返回值是新数组的个数：" + nums + "个元素后，" + myArray);
+		var lastEle = myArray.pop();
+		//alert("pop()方法弹出数组的最后一个元素：" + lastEle + ",数组：" + myArray);
+		
+		var firstEle = myArray.shift();
+		//lert("shift()弹出数组的第一个元素：" + firstEle + "，弹出后数组的元素为：" + myArray);
+		
+		var newLen = myArray.unshift("the first ele","the second ele");
+		alert("unshift是在数组的头部增加元素,返回的是新数组的个数：" + newLen + ",数组：" + myArray);
+		
+	</script>
+</html>

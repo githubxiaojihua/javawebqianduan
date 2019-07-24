@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/**
+		 * 1、函数也是一种类型，function类型
+		 * 2、函数是可以嵌套的，但是嵌套function的作用域只是在父函数的内部
+		 * 
+		 */
+		
+		//三种定义函数的方式
+		//1、function语句式
+		function test1(){
+			alert("test1");
+		}
+		//2、函数直接量
+		var test2 = function(){
+			alert("test2");
+		}
+		//3、function函数，效率极低
+		var test3 = new Function("a","b","return a+b");
+		
+		
+		/**
+		 * 解析顺序：
+		 * function语句式，相当于全局范围内的，javascript引擎会先解析，然后放到内存中
+		 * 因此test4()的调用虽然是在他的前边但是可以执行。
+		 * 但是函数直接量是局部范围的，必须在调用之前声明。
+		 * 
+		 * javascript是先解释后顺序执行的
+		 */
+		test4();
+		function test4(){
+			//alert("test4");
+		}
+		/*
+		test5();
+		var test5 = function(){
+			alert("test5");
+		}
+		*/
+		
+		/**
+		 * 解析顺序，输出顺序是：
+		 * 4，2, 3， 3, 5，6
+		 * 因为function语句式是全局范围的会先解释然后放到内存中，因此
+		 * 第一个函数会和第四个函数会先解释并存到内存中，这样第一个函数
+		 * 会被第四个函数覆盖掉，在真正调用的时候只会调用第四个
+		 */
+		function f(){return 1;}
+		alert(f());
+		var f = new Function("return 2");
+		alert(f());
+		var f = function(){return 3;}
+		alert(f());
+		function f(){return 4}
+		alert(f());
+		var f = new Function("return 5");
+		alert(f());
+		var f = function(){return 6}
+		alert(f());
+	</script>
+</html>

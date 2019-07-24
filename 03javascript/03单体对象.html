@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/**
+		 * 启用javascript严格模式，在非严格模式下，变量可以不用var来声明，如果
+		 * 未使用var来声明变量那么就自动被声明成了全局变量，这个特性很容易引起冲突
+		 * ECMA退出了严格模式，强制通过var来声明变量，如果不通过var声明变量则报错。
+		 * 使用方法是在代码的第一行写上"use strict";
+		 * 这样不支持严格模式的浏览器将作为字符串来处理，支持严格模式的浏览器将开启
+		 * 严格模式来运行javascript
+		 */
+		"use strict";
+		/**
+		 * 单体对象：
+		 * 1、Global对象（全局）这个对象不存在，无形的对象。内部包含了方法和属性：
+		 * 	  encodeURI,encodeURIComponent,decodeURI,decodeRUIComponent,eval,parseInt,parseFloat,isNaN,Escape,unescape
+		 * 2、Math对象，内置的Math对象可以用来处理各种数学运算，使用Math.数学函数（参数）的形式调用，
+		 *    Math.random()产生【0,1）范围的任意数。
+		 * 3、Date对象，获取当前时间的一系列详细方法
+		 * 4、基本包装类型：Boolean,String,Number和java的类似
+		 * 5、Function类型，RegExp类型	
+		 * 
+		 */
+		
+		/**
+		 * encodeURI和encodeURIComponent都是用来进行编码的，区别是
+		 * 后者会将: //等进行编码，而前者是不会的
+		 * 相对应的解码方式是：
+		 * decodeURI和decodeURIComponent
+		 */
+		var uri = "http://www.baidu.com cn";
+		var str1 = encodeURI(uri);
+		var str2 = encodeURIComponent(uri);
+		//alert(str1);
+		//alert(str2);
+		
+		//alert(decodeURI(str1));
+		//alert(decodeURIComponent(str2));
+		
+		/**
+		 * eval是一个强大的解释器，可以对js语句进行解析，
+		 * 并非一定要在eval中进行运算，经过eval解析的变量已经被解析到
+		 * 当前上下文中，可以直接使用。
+		 * 
+		 */
+		var str = "var a = 12; var b = 13";
+		eval(str);
+		//alert(a + b);
+		
+		/**
+		 * eval也可以用来解析对象，但是语法比较特殊
+		 * ()在js中表示立即执行的意思
+		 */
+		var objStr = "{name:'zs',age:21}";
+		var obj = eval("(" + objStr +")");
+		//alert(obj.name);
+		
+		/**
+		 * Date类代表时间，注意getMonth是从0开始的
+		 */
+		var date = new Date();
+		var year = date.getFullYear();
+		var month = date.getMonth() + 1;
+		var da = date.getDate();
+		var day = date.getDay();
+		var hours = date.getHours();
+		var minis = date.getMinutes();
+		var second = date.getSeconds();
+		//alert("今天是：" + year + "-" + month + "-" + da + "," + hours + ":" + minis+ ":" + second + ",星期" + day);
+		
+		var timestrape = date.getTime();
+		alert("时间戳：" + timestrape);
+	</script>
+</html>

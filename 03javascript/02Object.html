@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/*
+		 * Object是所有对象的基础类
+		 */
+		var obj = new Object();
+		//给对象设置属性和方法
+		obj = {};
+		obj.name = "张";
+		obj.age = 13;
+		obj.say = function(){
+			alert("hello world");
+		};
+		//调用对象的属性和方法
+		//alert("object:" + obj.name + "," +obj.age );
+		//obj.say();
+		
+		/*
+		 * 使用for in方式来遍历obj中的属性和方法
+		 * arr是属性名，obj[arr]是对应的属性值
+		 */
+		for(var arr in obj){
+			//alert(arr + ":" + obj[arr]);
+		}
+		
+		//delete 用来删除对象的属性和方法的，直接使用，他不属于window对象的方法
+		delete obj.name;
+		for(var arr in obj){
+			//alert(arr + ":" + obj[arr]);
+		}
+		
+		//Object的hasOwnProperty方法用于检测对象中是否含有相对应的属性或者方法
+		//alert(obj.hasOwnProperty("say"));
+		
+		
+		/*
+		 * 使用Object模拟java中的Map对象，
+		 * 对象的特性：属性值是不重复的
+		 */
+		function Map(){
+			var obj = {};
+			this.put = function(key,value){
+				obj[key] = value;
+			}
+			
+			this.size = function(){
+				var count = 0;
+				for(var arr in obj){
+					count++;
+				}
+				return count;
+			}
+			
+			this.eachKey = function(fn){
+				for(var arr in obj){
+					fn(arr, obj[arr]);
+				}
+			}
+		}
+		
+		var map = new Map();
+		//属性值是不重复的
+		map.put("01","abc");
+		map.put("01","ccc");
+		map.put("02","cba");
+		map.put("03","123");
+		map.put("04","321");
+		map.put(05,900);
+		
+		//alert(map.size());
+		
+		map.eachKey(function(key, value){
+			//alert(key + ":" + value);
+		});
+		
+		/**
+		 * 利用Object属性唯一性的特性，建立数组去重算法：
+		 * 1、先把数组转换成Object对象
+		 * 2、用数组的值作为Object对象的属性
+		 * 3、将Object转换为数组
+		 */
+		var myArr = [2,1,3,2,3,1,4,5,10];
+		//将数组转换成Object
+		function toObject(arr){
+			var obj = {};
+			for(var i=0; i<arr.length; i++){
+				obj[arr[i]] = true;
+			}
+			return obj;
+		}
+		//将Object转换成数组
+		function toArray(obj){
+			var arrObj = new Array();
+			for(var arr in obj){
+				if(obj.hasOwnProperty(arr)){
+					arrObj.push(arr);
+				}
+			}
+			return arrObj;
+		}
+		//结合前两个方法完成去重算法
+		function unique(arr){
+			return toArray(toObject(arr));
+		}
+		
+	</script>
+</html>
