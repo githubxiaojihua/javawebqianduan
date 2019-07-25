@@ -7,226 +7,59 @@
 	<body>
 	</body>
 	<script type="text/javascript">
-		/**
-		 * 1、函数也是一种类型，function类型
-		 * 2、函数是可以嵌套的，但是嵌套function的作用域只是在父函数的内部
-		 * 
-		 */
-		
-		//三种定义函数的方式
-		//1、function语句式
-		function test1(){
-			alert("test1");
-		}
-		//2、函数直接量
-		var test2 = function(){
-			alert("test2");
-		}
-		//3、function函数，效率极低
-		var test3 = new Function("a","b","return a+b");
-		
 		
 		/**
-		 * 解析顺序：
-		 * function语句式，相当于全局范围内的，javascript引擎会先解析，然后放到内存中
-		 * 因此test4()的调用虽然是在他的前边但是可以执行。
-		 * 但是函数直接量是局部范围的，必须在调用之前声明。
-		 * 
-		 * javascript是先解释后顺序执行的
+		 * 下面输出是xiaoB
+		 * 因为getName返回的是一个函数，而且后面又跟上了()表示立即执行
+		 * 执行的函数是：
+		 * function（）{return this.name;}
+		 * 而且执行者是window，那么this就代表了window
+		 * 因此输出为xiaoB
 		 */
-		test4();
-		function test4(){
-			//alert("test4");
-		}
-		/*
-		test5();
-		var test5 = function(){
-			alert("test5");
-		}
-		*/
-		
-		/**
-		 * 解析顺序，输出顺序是：
-		 * 4，2, 3， 3, 5，6
-		 * 因为function语句式是全局范围的会先解释然后放到内存中，因此
-		 * 第一个函数会和第四个函数会先解释并存到内存中，这样第一个函数
-		 * 会被第四个函数覆盖掉，在真正调用的时候只会调用第四个
-		 * 其他的是按照声明的顺序解释执行，前面的函数会被后面的函数覆盖
-		 */
-		function f(){return 1;}
-		//alert(f());
-		var f = new Function("return 2");
-		//alert(f());
-		var f = function(){return 3;}
-		//alert(f());
-		function f(){return 4}
-		//alert(f());
-		var f = new Function("return 5");
-		//alert(f());
-		var f = function(){return 6}
-		//alert(f());
-		
-		/**
-		 * 三种不同形式的函数声明所对应的作用域
-		 */
-		var k = 1;
-		function t1(){
-			var k = 2;
-			//局部，返回2
-			function test(){ return k;}
-			alert(test());
-			//局部，返回2
-			var test = function(){ return k;}
-			alert(test());
-			//全局，返回1
-			test = new Function("return k;");
-			alert(test());
-		}
-		//t1();
-		
-		/**
-		 * 函数的参数对象
-		 * @param {Object} a
-		 * @param {Object} b
-		 * @param {Object} c
-		 * @param {Object} d
-		 */
-		function test(a,b,c,d){
-			//返回函数的形参个数
-			alert(test.length);
-			//返回函数的实参个数
-			alert(arguments.length);
-			//返回第一个参数值
-			alert(arguments[0]);
-			//返回第二个参数值
-			alert(arguments[1]);
-		}
-		//test(1,2);
-		
-		/**
-		 * 通过arguments.callee来实现递归，
-		 * arguments.callee代表了函数本身
-		 * arguments.callee.length = ff.length
-		 * 使用递归的时候建议使用arguments.callee()
-		 * @param {Object} num
-		 */
-		function ff(num){
-			if(num<=1){
-				return 1;
+		var name = "xiaoB";
+		var obj = {
+			name : "xiaoA",
+			getName : function(){
+				return function(){ return this.name; }
 			}
-			return num * arguments.callee(num - 1);
-		}
-		
-		var F = ff;
-		//alert(F(5));
+		};
+		//alert(obj.getName()());
 		
 		/**
-		 * this，永远代表调用者
+		 * 通过给getName增加var o = this，来输出xiaoA
+		 * 因为当调用getName的时候，this代表的是XiaoAObj,
+		 * 将其保存到var o中，在返回的函数中调用o.name
+		 * 从而达到了输出xiaoA的目的
+		 * 这里getName函数返回的函数就是闭包：
+		 * 
+		 * 闭包的官方定义：
+		 * 一个函数可以访问另一个函数作用域中的变量
 		 */
-		var k = 10;
-		function thisTest(){
-			var k = 12;
-			this.k = 20;
-		}
-		thisTest();//调用者是window，相当于window.thisTest()，因此函数中this.k改变的是函数外边的全局变量k
-		//alert(k);
-		
-		
-		/**
-		 * 每一个函数都有两个默认的方法，call和apply，用于将函数绑定到指定的作用域并传递参数
-		 *
-		 */
-		function sum(num1, num2){
-			return num1 + num2;
-		}
-		
-		function callone(num1,num2){
-			//将sum绑定到callone函数的作用域中，并将此作用域下的num1和num2传递给sum
-			return sum.call(this,num1,num2);
-		}
-		
-		function applyone(num1,num2){
-			//将sum绑定到applyone函数的作用域中，并将此作用域下的参数传递给sum
-			//使用call和apply的区别在于参数的传递apply使用的是[]
-			return sum.apply(this,[num1,num2])
-		}
-		
-		//alert(callone(3,2));
-		//alert(applyone(4,5));
-		
-		/**
-		 * call和apply的重要应用是改变函数的作用域
-		 */
-		var color = "red";
-		var callObj = {color:"blue"};
-	
-		function showColor(){
-			//alert(this.color);
-		}
-		//通过call和apply能够更改showColor的作用域，使得this指向不同的作用域
-		//通过call和apply使得函数的作用域发生了变化，使得函数可以绑定到不同的对象上
-		showColor.call(window);
-		showColor.apply(callObj);
-		
-		/**
-		 * js中约定俗称，如果函数名称的首字母大写那么就代表定义的是一个自定义对象
-		 */
-		function test1(a,b){
-			return a+b;
-		}
-		
-		/**
-		 * 定义对象的时候需要使用this
-		 * 最后的return语句是返回的参数乘积，
-		 * 如果要返回属性乘积那么携程this.x1*this.y1
-		 * 不过就算写上也没有用因为作为对象来讲
-		 * 会忽略return 语句
-		 */
-		function Obj(x1,y1){
-			this.x = x1;
-			this.y = y1;
-			return x1*y1;
-		}
-		//Obj被约定俗称的当做一个对象
-		var o = new Obj(10,20);
-		//alert(o);
-		//alert(test1(o.x,o.y));
-		
-		/**
-		 * js没有块级作用域
-		 * 向下面的i在内部for循环结束之后仍然有效
-		 */
-		function zuoyongyu(){
-			for(var i=0; i<5; i++){
-				alert(i);
-			}
-			alert(i);
-		}
-		//zuoyongyu();
-		
-		/**
-		 * 通过（）来使块作用域生效。
-		 * 在js中();代表着立即执行
-		 */
-		function shixianzuoyongyu(){
-			(
-				function(){
-					for(var i=0; i<5; i++){
-						alert(i);
-					}
+		var XiaoAObj = {
+			name : "xiaoA",
+			getName : function(){
+				var o = this;
+				//当返回这个函数的时候实际上getName的作用域已经结束了
+				//但是js引擎发现作用域中的变量被返回的函数使用了，因此
+				//就不消除当前函数，为的是在返回函数中调用变量成功
+				return function(){
+					return o.name;
 				}
-			)();
-			//控制台会给出i没有定义的错误
-			alert(i);
-		}
-		//shixianzuoyongyu();
+			}
+		};
+		//alert(XiaoAObj.getName()());
 		
-		/**
-		 * 立即执行，无需调用
-		 */
-		(function(){
-			alert("我马上就执行了！");
-		})();
-
+		function bibao(x){
+			var tmp = x;
+			//返回闭包
+			return function(x){
+				alert(tmp + x);
+			}
+		}
+		
+		var fun = bibao(50);
+		fun(5);//相当于50+5
+		fun(10);//相当于50+10
+		fun(20);//相当于50+20
 	</script>
 </html>
