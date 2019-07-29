@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		/**
+		 * ES6提供类似java中的可变参数 ...rest
+		 * ...rest只能写在函数的最后
+		 * 原始的javascript提供arguments来遍历参数
+		 * @param {Object} a
+		 * @param {Object} b
+		 */
+		function foo(a,b, ...rest){
+			console.log("a = " + a);
+			console.log("b = " + b);
+			console.log(rest);
+		}
+		
+		foo(1,2,3,4,5,6)
+		
+		
+		/**
+		 * 在函数内部首先声明所有变量，因为javascript函数有个特点，他会先扫描整个函数体语句，把所有申明的变量提升到函数的顶部。
+		 * 
+		 */
+		
+		
+		/**
+		 * 自定义命名空间
+		 * 全局变量会绑定到window上，为了防止全局变量的冲突，可以把自己所有的变量和函数绑定到一个全局变量中
+		 * 把自己的代码全部放入唯一的命名空间中，会大大降低全局变量的冲突
+		 * 许多著名的js框架JQurey, YUI, underscore等都是这么干的
+		 */
+		var MYAPP = {};
+		MYAPP.name = "myapp";
+		MYAPP.version = 1.0;
+		MYAPP.foo = function(){
+			return 'foo';
+		}
+		
+		/**
+		 * javascript没有块级作用域，函数内定义的变量的作用域是函数体内，比如
+		 * 下面的i在整个函数体内都有效。
+		 * ES6新增let关键字用来声明局部变量
+		 * 在testParVar2中的i就是块级变量
+		 * 此外const用来声明常量，其与let一样都属于块级作用域
+		 */
+		function testPartVar(){
+			for(var i=0; i<10; i++){
+				
+			}
+			//alert(i);
+		}
+		testPartVar();
+		
+		function testParVar2(){
+			var sum = 0;
+			for(let i=0; i<10; i++){
+				sum += i;
+			}
+			//alert(i);
+		}
+		testParVar2();
+		
+		/**
+		 * ES6可以基于数组的的解构赋值通过
+		 * 将xyz的值分别赋予匿名数组的值
+		 */
+		//var [x,y,z] = ['hello','javascript','es6'];
+		//alert(x + "," +y + "," +z);
+		//也可以嵌套赋值
+		let[x,[y,z]] = ['hello',['javascript','es6']];
+		//alert(x + "," +y + "," +z);
+		//也可以忽略某些赋值
+		let[,,a] = ['hello','javascript','es6'];
+		//alert(a);
+		
+		/**
+		 * ES6同样支持对象的解构赋值
+		 */
+		var person = {
+			name:"小明",
+			age:20,
+			gender:"male",
+			passport:"sdfghjk23456789",
+			school:"jimoerzhong",
+			address:{
+				city:"beijing",
+				street:"erhuandonglu",
+				zipcode:123456
+			}
+		}
+		//基于对象的解构赋值，也可以嵌套
+		var {name,address:{city,zipcode}} = person;
+		//alert(name + ",address:" + city + "," + zipcode);
+		
+		//可以通过冒号来改变赋值的变量名
+		var {name:name1,passport:id} = person;
+		//alert(name1 + "," + id);
+		
+		//解构也可以使用默认值，下面的single就是默认值
+		var {name:name2,single=true} = person;
+		//alert(name2 +"," + single);
+		
+		
+		/**
+		 * 解构赋值的应用场景：
+		 * 1、快速交换值
+		 */
+		var testx = 1, testy = 2;
+		[testx,testy] = [testy,testx];
+		//alert(testx + "," + testy);
+		
+		/**
+		 * 2、快速获取当前页面的值
+		 */
+		var {hostname:domain,pathname:path} = location;
+		//alert(domain + "," + path);
+		
+		/**
+		 * 可以将一个对象快速传递给函数快速的参数，
+		 * 并且可以为函数的参数设置默认值
+		 */
+		function buildDate({year,month,day,hour=0,min=0,sen=0}){
+			return new Date(year + "-" + month + "-" + day +" " +hour + ":" + min + ":" + sen);
+		}
+		//可以只输入年月日
+		//alert(buildDate({year:2019,month:07,day:29}));
+		
+		/**
+		 * apply和call的应用
+		 * 
+		 */
+		function getAge(){
+			var y = new Date().getFullYear();
+			return y - this.birth;
+		}
+		var xiaoming = {
+			name:"xiaoming",
+			birth:1990,
+			//注意这里的getAge不能带有（）
+			age:getAge
+		}
+		//括号要在这里加
+		//alert(xiaoming.age());
+		//使用apply在xiaoming的作用域内调用getAge，注意getAge后面不能有括号
+		//alert(getAge.apply(xiaoming,[]));
+		
+		//当调用普通函数的时候没有指定的作用域可以写null
+		//alert(Math.max.apply(null,[3,4,5]));
+		
+		/**
+		 * 使用apply来做一个装饰器，使得在调用parseInt的
+		 * 时候能够同时增加count的值来代表parseInt的调用次数
+		 */
+		var count = 0;
+		var oldParseInt = parseInt;
+		window.parseInt = function(){
+			count +=1;
+			return oldParseInt.apply(null,arguments);
+			//下面这一句也可以
+			//return oldParseInt(arguments);
+		}
+		parseInt('10');
+		parseInt('20');
+		parseInt('30');
+		alert(count);
+	</script>
+</html>

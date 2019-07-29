@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		/**
+		 * 创建类的两种主要方式之一：工厂模型
+		 * @param {Object} name
+		 * @param {Object} sex
+		 * @param {Object} age
+		 */
+		function createObje(name,sex,age){
+			var obj = new Object();
+			obj.name = name;
+			obj.sex = sex;
+			obj.age = age;
+			obj.sayName = function(){
+				alert(this.name);
+			}
+			return obj;
+		}
+		
+		var person1 = createObje("zhangsan",'nan',12);
+		var person2 = createObje("lisi",'nv',33);
+		//alert(person1.name);
+		//person2.sayName();
+		
+		/**
+		 * 创建类的两种方式之一：类的模版，首字母要大写（约定俗成）
+		 * @param {Object} name
+		 * @param {Object} sex
+		 * @param {Object} age
+		 */
+		function Person(name,sex,age){
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+			this.sayName = function(){
+				alert(this.name);
+			}
+		}
+		
+		var p1 = new Person("zhangsan",'nv',11);
+		var p2 = new Person("lise","nan",33)
+		//alert(p1.name);
+		//p1.sayName();
+		//根据类的模版创建的类是两个完全不同的类，不相等代表地址也不一样
+		//alert(p1 == p2);//false
+		//alert(p1.constructor == Person);//true
+		//alert(p2.constructor == Person);//true
+		//alert(p1 instanceof Person);//true
+		//alert(p1.sayName == p2.sayName);//false
+		
+		
+		
+		/**
+		 * prototype,创建每一个函数都有一个prototype属性，这个属性是一个指针，而这个指针总是指向一个对象（原型对象），
+		 * 这个对象的用途就是将特定的属性和方法包含在内，起到一个所有实例共享的作用。
+		 * 构造函数创建对象有一个缺点就是，所有的方法和属性每个实例在new的时候都会创建一份新的。
+		 * 比如公用的方法sayName。因此需要使用原型。
+		 * 
+		 * 关于原型在学习笔记中有一张图比较好在
+		 * javascript----面向对象
+		 * 
+		 * 
+		 * 构造函数、原型对象、实例之间的关系
+		 * 构造函数.prototype = 原型对象
+		 * 原型对象.constructor = 构造函数
+		 * 原型对象.isProtytypeOf(实例)，用于判断某原型对象是否是另外一个实例的原型
+		 */
+		function PersonPrototype(){
+			
+		}
+		//使用构造函数.prototype获得原型对象
+		var obj = PersonPrototype.prototype;
+		obj.name = "wangwu";
+		obj.sex = "男";
+		obj.age = 90;
+		obj.sayName = function(){
+			alert(this.name);
+		}
+		
+		var p11 = new PersonPrototype();
+		var p21 = new PersonPrototype();
+		//alert(p11.age);
+		//alert(p21.age);
+		//alert(p11.name);
+		//alert(p21.name);
+		//alert(p11.sayName == p21.sayName);//true
+		//alert(obj.isPrototypeOf(p11));//true
+		
+		//Object对象有一个getPrototypeOf的方法来获得实例的原型对象
+		var prototypeObj = Object.getPrototypeOf(p11);
+		//alert(prototypeObj === obj);
+		
+		/**
+		 * 每次代码读取一个对象的属性的时候，首先会进行一次搜索：
+		 * 先看p3有没有对应的实例属性，如果没有则到p3对应的prototype
+		 * 中查找是否有相应的属性，如果没有那么就会报错
+		 */
+		var p3 = new PersonPrototype();
+		p3.name = "w6";//实例对象的属性
+		delete p3.name;
+		//alert(p3.name);
+		//判断是实例属性还是原型属性
+		//alert(p3.hasOwnProperty("name"));
+		
+		/**
+		 * 通过Object.keys分别获取实例属性和原型属性
+		 */
+		p3.name = "abc";
+		p3.age = 99;
+		var attributes = Object.keys(p3);
+		alert(attributes);
+		
+		var attributes1 = Object.keys(PersonPrototype.prototype);
+		alert(attributes1);
+	</script>
+</html>
