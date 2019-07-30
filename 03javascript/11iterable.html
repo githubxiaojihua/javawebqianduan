@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		/**
+		 * 为了统一集合的访问方式（array,map,set)
+		 * ES6引入了iterable类型。array,map,set都属于iterable类型。
+		 * iterable类型可以通过for....of来遍历
+
+		 */
+		
+		var arr = ['a','b','c'];
+		var s = new Set(['a','b','c']);
+		var m = new Map([[1,'x'],[2,'y'],[3,'z']]);
+		
+		for(var x of arr){
+			//alert(x);
+		}
+		
+		for(var x of s){
+			//alert(x);	
+		}
+		
+		for(var x of m){
+			//alert(x[0] + ":" + x[1]);
+		}
+		
+		/**
+		 * 使用foreach代替上面的写法
+		 */
+		arr.forEach(function(item,index,array){
+			//item:指向当前元素
+			//index:指向当前索引
+			//array:指向数组本身
+			alert(item);
+		});
+		
+		s.forEach(function(item,sameitem,set){
+			//set没有索引，第二个参数与第一个参数一致
+			alert(item);
+		});
+		
+		m.forEach(function(value,key,map){
+			alert(value);
+		});
+		
+		/**
+		 * 如果对于其他参数不感兴趣可以可以忽略
+		 */
+		arr.forEach(function(item){
+			alert(item);
+		});
+
+	</script>
+</html>

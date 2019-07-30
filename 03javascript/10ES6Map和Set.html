@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		/**
+		 * 多行字符串：
+		 * ES6，用反引号``
+		 * `这是一个多行
+		 * 字符
+		 * 串`
+		 * 如果浏览器不支持es6那么只能通过\n来实现。\n
+		 * 
+		 * 以下通过两种方式来输出一个字符串
+		 */
+		var name = "小明";
+		var age = 23;
+		
+		//原始的拼接
+		var message1 = "你好" + name +",你今年" + age + "岁了！";
+		//alert(message1);
+		
+		//ES6的模版字符串，使用的是多行字符串
+		var message2 = `你好${name},你今年${age}岁了！`;
+		//alert(message2);
+		
+		var s = "hello world";
+		alert(s[1]);
+		alert(s.length);
+		alert(s.toUpperCase());
+		alert(s.toLowerCase());
+		alert(s.indexOf("world"));
+		alert(s.substring(0,5));
+		alert(s.substring(7));
+
+	</script>
+</html>

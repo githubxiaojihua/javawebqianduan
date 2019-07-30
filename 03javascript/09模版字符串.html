@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		/**
+		 * ES6中对于Map的操作。
+		 * 同一个key 设置多次会覆盖
+		 */
+		//初始化的时候赋值，注意使用的是数组初始化
+		var m = new Map([['zhangsan',95],['lisi',88],['wangwu',99]]);
+		alert(m.get('zhangsan'));
+		
+		//后赋值
+		var m1 = new Map();
+		m1.set("zhangsan2",11);
+		m1.set("zhangsan3",12);
+		m1.set("zhangsan4",13);
+		m1.set("zhangsan5",14);
+		
+		//相关方法
+		//alert(m1.has("zhangsan6"));
+		//alert(m1.get("zhangsan2"));
+		m1.delete("zhangsan3");
+		//alert(m1.get("zhangsan3"));
+		
+		/**
+		 * ES6中的SET使用
+		 */
+		//初始化空的set
+		var s = new Set();
+		//初始化set，注意使用的是数组初始化
+		var s1 = new Set([1,2,3]);
+		
+		var s2 = new Set([1,2,3,3,"3"]);
+		console.log(s2);//s2只包含1,2,3,"3"
+		
+		s2.add("4");
+		console.log(s2);
+		s2.delete("4")
+		console.log(s2);
+
+	</script>
+</html>

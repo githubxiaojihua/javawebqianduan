@@ -116,9 +116,27 @@
 		p3.name = "abc";
 		p3.age = 99;
 		var attributes = Object.keys(p3);
-		alert(attributes);
+		//alert(attributes);
 		
 		var attributes1 = Object.keys(PersonPrototype.prototype);
-		alert(attributes1);
+		//alert(attributes1);
+		
+		/**
+		 * 对象的变量名如果包含特殊字符则必须使用''引号
+		 * 包含起来
+		 */
+		var xiaohong = {
+			name:'xiaohong',
+			'middle-schoole':'no.1 middle school'
+		};
+		/*
+		 * 	对于变量名包含特殊字符的变量，访问的时候不能使用.
+		 * 必须使用[]的方式，但是普通的变量则可以使用.或者[]
+		 * 其中的任何一种方式来访问
+		 */
+		alert(xiaohong['middle-schoole']);
+		alert(xiaohong['name']);
+		alert(xiaohong.name);
+		
 	</script>
 </html>
