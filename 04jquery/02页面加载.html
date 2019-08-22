@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript">
+			//js的页面加载事件
+			/*
+			 * js的页面加载事件是会覆盖的，比如下面的1111会被222覆盖掉
+			 */
+			window.onload = function(){
+				alert(1111);
+			};
+			window.onload = function(){
+				alert(222);
+			};
+			
+			//jquery页面加载事件
+			/**
+			 * jquery页面加载事件优先级比js的页面加载事件高，
+			 * 并且不会被覆盖。
+			 */
+			$(function(){
+				alert("jquery页面加载事件1");
+			});
+			
+			$(function(){
+				alert("jquery页面加载事件2");
+			});
+		
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

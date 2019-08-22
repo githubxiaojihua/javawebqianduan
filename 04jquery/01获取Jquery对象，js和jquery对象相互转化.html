@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+	</head>
+	<body>
+		<input type="text" id="username" value="jack"/>
+	</body>
+	
+	<script type="text/javascript">
+		//js获取dom对象，并且打印对象的value属性
+		var jsObj = document.getElementById("username");
+		//alert(jsObj.value);
+		
+		//jquery，获取dom对象对应的jquery对象，并且通过调用val()方法打印value
+		var $obj = $("#username");
+		//alert($obj.val());
+		
+		//js对象和jquery对象相互转化
+		//js对象转换成jquery对象，只需要将js对象方法哦$()中即可，调用jquery对象的方法
+		alert($(jsObj).val());
+		//jquery对象转换成js对象，需要使用数组形式，因为jquery对应的js对象可能是多个
+		//获取到js对象后就可以调用js相关属性
+		alert($obj[0].value);
+		
+	</script>
+</html>
