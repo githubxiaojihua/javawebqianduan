@@ -2,34 +2,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <title>04-内容过滤选择器.html</title>
+ <title>05-可见性过滤选择器.html</title>
  <!--   引入jQuery --> 
  <script src="../../js/jquery-1.11.0.min.js"></script>
  <script src="../../js/assist.js"></script>
  <link rel="stylesheet" type="text/css" href="../../css/style.css" /> 
  <script type="text/javascript">
- 	//<input type="button" value="选取含有class为mini元素 的div元素." id="btn1"/>1
  	$(function(){
- 		$("#btn1").click(function(){
- 			$("div:has(.mini)").css("background","red");
+ 		$("#b1").click(function(){
+ 			$("div:visible").css("background-color","red");
+ 		})
+ 		
+ 		$("#b2").click(function(){
+ 			$("div:hidden").show(1000);
  		});
  	});
  </script>
 </head>
-<!-- 看一下assist.js学习一下#mover的动画效果是怎么设置的 -->
 <body>
-  <h3>内容过滤选择器.</h3>
+  <h3>可见性过滤选择器.</h3>
   <button id="reset">手动重置页面元素</button>
-  <input type="checkbox" id="isreset" checked="checked"/><label for="isreset">点击下列按钮时先自动重置页面</label><br /><br />
+  <input type="checkbox" id="isreset" checked="checked"/><label for="isreset">点击下列按钮时先自动重置页面</label>
+  <br/><br/>
+  <input type="button" value=" 选取所有可见的div元素"  id="b1"/>
+  <input type="button" value=" 选取所有不可见的div元素, 利用 jQuery 中的 show() 方法将它们显示出来"  id="b2"/>
+  
+  <br /><br />
 
-
-  <input type="button" value="选取含有class为mini元素 的div元素." id="btn1"/>
-
-
-
-<br /><br />
-
-   <!-- 测试的元素 -->
+  
   <div class="one" id="one" >
  id为one,class为one的div
       <div class="mini">class为mini</div>
@@ -45,15 +45,6 @@
       <div class="mini">class为mini</div>
       <div class="mini">class为mini</div>
 	  <div class="mini">class为mini</div>
-	  <div class="mini"></div>
-  </div>
-
-  
-
-  <div class="one">
-      <div class="mini">class为mini</div>
-      <div class="mini">class为mini</div>
-	  <div class="mini">class为mini</div>
 	  <div class="mini"  title="tesst">class为mini,title为tesst</div>
   </div>
 
@@ -61,13 +52,7 @@
   <div style="display:none;"  class="none">style的display为"none"的div</div>
   
   <div class="hide">class为"hide"的div</div>
- 
-  <div>
-  包含input的type为"hidden"的div<input type="hidden" size="8"/>
-  </div>
-
   
-  <span id="mover">正在执行动画的span元素.</span>
 
 </body>
 </html>
