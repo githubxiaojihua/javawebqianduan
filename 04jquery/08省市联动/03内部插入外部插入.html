@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript">
+			/**
+			 * 使用after before insertAfter insertBefore在外部插入元素
+			 */
+			$(document).ready(function(){
+				//1.在city的内部的后面追加 反恐
+				$("#city").append($("#fk"));
+				//2.在city的前面内部插入 反恐
+				$("#fk").prependTo($("#city"));
+			});
+			
+			
+			$(document).ready(function(){
+				//1.在 p2 的后面插入 city2
+				$("#p2").after($("#city2"));
+				//2.在 p2 的前面插入 city2
+				$("#city2").insertBefore($("#p2"));
+				
+			});
+			
+				
+		</script>
+	</head>
+	<body>
+		<ul id="city">
+		 	 <li id="bj" name="beijing">北京</li>
+			 <li id="tj" name="tianjin">天津</li>
+			 <li id="cq" name="chongqing">重庆</li>
+		 </ul>
+		 
+		 
+		  <ul id="love">
+		 	 <li id="fk" name="fankong">反恐</li>
+			 <li id="xj" name="xingji">星际</li>
+		 </ul>
+		
+		<div id="foo1">Hello1</div> 
+		
+		
+		
+		<!-- 外部插入 -->
+		 <ul id="city2">
+		 	 <li id="bj" name="beijing">北京</li>
+			 <li id="tj" name="tianjin">天津</li>
+			 <li id="cq" name="chongqing">重庆</li>
+		 </ul>
+		
+		 <p  id="p3">I would like to say: p3</p>
+		 
+		 <p  id="p2">I would like to say: p2</p>
+		
+		 <p  id="p1">I would like to say: p1</p>
+		
+	</body>
+</html>

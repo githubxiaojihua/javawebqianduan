@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript">
+			/**
+			 * 遍历的两种方法，以及使用可见行过滤选择器
+			 */
+			$(function(){
+				//派发事件
+				$("#b1").click(function(){
+					//获取隐藏域遍历
+					$("[type=hidden]").each(function(index,ele){
+						//ele是javascript对象，转换成jquery对象，并调用方法
+						alert($(ele).val());
+						//直接使用javascript对象的value属性
+						alert(index+" : "+ele.value);
+					});
+				});
+				
+				//使用each
+				$("#b2").click(function(){
+					$.each($("input:hidden"), function(index,ele) {
+						alert(index+" : "+ele.value);
+					});
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<input type="button" value="选取所有的文本隐藏域，并打印他们的值" id="b1"/>
+		<input type="button" value="选取所有的文本隐藏域，并打印他们的值" id="b2"/>
+		
+		<!-- 隐藏域 -->
+		<input type="hidden" value="hidden_1"/>
+		<input type="hidden" value="hidden_2"/>
+		<input type="hidden" value="hidden_3"/>
+		<input type="hidden" value="hidden_4"/>
+		<input type="hidden" value="hidden_5"/>
+		
+	</body>
+</html>

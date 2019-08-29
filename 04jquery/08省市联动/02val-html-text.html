@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript">
+			/**
+			 * jquery对象的val()方法的使用以及属性值的设置
+			 * html()和 text()方法的使用和区别
+			 */
+			$(document).ready(function(){
+				//1、设置username 的默认值为许多多
+				$("[name=username]").val("许多多");
+				//2、获取username的value属性值
+				//alert($("[name=username]").val());
+				//3、通过html()获取div标签体的内容
+				//alert($("div").html());
+				//4、通过html()设置div标签体的内容
+				$("div").html("如果我们角色互换，我会让你知道什么是残忍！");
+				
+				//5、通过text()获取div标签体的内容
+				//alert($("div").text());
+				//6、通过text()设置div标签体的内容
+				$("div").text("text设置内容");
+				
+				//7、html()和text()的区别
+				$("div").html("<h1>html()方法设置的值</h1>");
+				//$("div").text("<h1>html()方法设置的值</h1>");
+				
+				alert($("div").html());
+				alert($("div").text());
+			});
+		</script>
+	</head>
+	<body>
+		<h3>表单</h3>
+	<form action="">
+		<table border="1">
+			<tr id="tr1">
+				<td><label>姓名</label></td>
+				<td><input type="text" name="username"/></td>
+			</tr>
+			<tr>
+				<td><span>密码</span></td>
+				<td><input type="password" name="password" /></td>
+			</tr>
+			<tr>
+				<td>性别</td>
+				<td>
+					<input type="radio" name="gender" value="男" />男
+					<input type="radio" name="gender" value="女" />女
+				</td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td>
+					<button type="button">普通按钮</button>
+					<input type="submit" value="提交按钮" />
+					<input type="reset" value="重置按钮" />
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	
+	<h3>公告信息</h3>
+	<div>
+		未满18慎进
+	</div>
+	<span id="sp">外span<a href='#'>内超链</a></span>
+	<span id="sp1"></span>
+		
+	</body>
+</html>
