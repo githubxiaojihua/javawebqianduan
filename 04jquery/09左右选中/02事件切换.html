@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+			/**
+			 * jquery事件切换
+			 */
+			$(function(){
+				/**
+				 * 鼠标移入移除
+				 */
+				/*$("#divId").mouseover(function(){
+					$(this).html("鼠标进入")
+				}).mouseout(function(){
+					$(this).html("鼠标移出");
+				});*/
+				
+				/**
+				 * 鼠标移入移出切换
+				 */
+				$("#divId").hover(function(){
+					$(this).html("鼠标进入");
+				},function(){
+					$(this).html("鼠标移出")
+				});
+				
+				/**
+				 * 自行实现按钮点击事件切换
+				 */
+				/*var i=0;
+				$("#bId").click(function(){
+					i++;
+					if(i%2 == 0){
+						alert(22222);
+					}else{
+						alert(11111);
+					}
+				});*/
+				
+				/**
+				 * 绑定多个方法，点击事件发生后依次循环执行。
+				 * 一次执行一个方法
+				 */
+				$("#bId").toggle(function(){
+					alert("111");
+				},function(){
+					alert("222")
+				},function(){
+					alert("333")
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<input type="button" id="bId" value="点击查看" /><br>
+		<div id="divId" style="border:1px solid red;height:100px;width:100px">事件切换</div>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.validate.js"></script>
+		<script type="text/javascript" src="../../js/messages_zh.js"></script>
+		<script type="text/javascript">
+			/**
+			 * jquery validate的使用，注意使用格式
+			 * 可以查看笔记.
+			 * 
+			 * 自定义校验器的使用和定义
+			 */
+			$(document).ready(function(){
+				$("#formId").validate({
+					rules:{
+						username:{
+							required:true
+						},
+						password:{
+							required:true,
+							number:true
+						},
+						repassword:{
+							required:true,
+							equalTo:$("[name=password]")
+						},
+						zuixiaozhi:{
+							min:5
+						},
+						shuzhiqujian:{
+							range:[3,10]
+						},
+						//使用自定义的身份证校验
+						card:{
+							idCard:true
+						}
+						
+					},
+					messages:{
+						username:{
+							//这里可以使用html或者样式，来调整显示的样式
+							required:"<span style='color:red'>必填项请输入</span>"
+						},
+						password:{
+							required:"必填项请输入",
+							number:"输入的值必须是数字"
+						},
+						repassword:{
+							required:"必填项请输入",
+							equalTo:"两次密码输入不一致"
+						},
+						zuixiaozhi:{
+							min:"最小值为5"
+						},
+						shuzhiqujian:{
+							range:"只能输入[3---10]之间的数字"
+						}
+					}
+				});
+			});
+		
+		
+		$.validator.addMethod("idCard",function(value,ele,param){
+			if(typeof param != "boolean"){
+				return false;
+			}
+			if(value.length == 15){
+				return /^[0-9]{15}$/.test(value);
+			}
+			if(value.length == 18){
+				return /^([0-9]{18}|[0-9]{17}[X|x])$/.test(value);
+			}
+			//默认返回false
+			
+		},"身份证格式错误");
+		</script>
+	</head>
+	<body>
+		<form id="formId" action="">
+			必填：<input type="text" name="username"/> <br/>
+			必填数字：<input type="text" name="password"/> <br />
+			必填重复：<input type="text" name="repassword"/> <br />
+			最小值：<input type="text" name="zuixiaozhi"/> <br />
+			区间：<input type="text" name="shuzhiqujian"/> <br />
+			身份证：<input type="text" name="card" />
+			<input type="submit" value="提交"/>
+		</form>
+	</body>
+</html>
